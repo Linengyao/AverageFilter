@@ -2,10 +2,28 @@
 //
 
 #include <iostream>
-
+#include <opencv.hpp>
+using namespace cv;
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+
+	VideoCapture cap(0);
+
+	while (1)
+	{
+		cv::Mat frame;
+		cv::Mat AverageFilterMat;
+		cap >> frame;
+
+		blur(frame, AverageFilterMat, Size(3, 3), Point(-1, -1), BORDER_DEFAULT);
+		
+		imshow("frame", frame);
+		imshow("result", AverageFilterMat);
+		waitKey(30);
+
+	}
+    //std::cout << "Hello World!\n";
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
